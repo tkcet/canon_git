@@ -5,17 +5,20 @@ public class Ghost extends Actor {
 		super();
 	}
 
-	Ghost(int hp, int attack) {
-		super.setName("ゴースト");
-		super.setHp(hp);
+	Ghost(int hp, int attack, int defense) {
+		super("ゴースト", hp, attack, defense);
 		super.setMaxHp(hp);
-		super.setAttack(attack);
 	}
 
 	public void attack(Actor target) {
 		int hp;
+		int damage;
 
-		hp = target.getHp() - super.getAttack();
+		damage = super.getAttack() - target.getDefense();
+		if (damage < 0) {
+			damage = 0;
+		}
+		hp = target.getHp() - damage;
 		if (hp < 0) {
 			hp = 0;
 		}
@@ -23,7 +26,7 @@ public class Ghost extends Actor {
 		target.setHp(hp);
 
 		System.out.println(super.getName() + "の叫び声！");
-		System.out.println("　" + target.getName() + "に" + super.getAttack() + "のダメージを与えた！");
+		System.out.println("　" + target.getName() + "に" + damage + "のダメージを与えた！");
 
 	}
 

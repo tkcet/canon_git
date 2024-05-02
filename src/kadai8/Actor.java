@@ -9,17 +9,19 @@ public class Actor {
 	private int hp; // 生命力
 	private int maxHp; // 最大生命力
 	private int attack; // 攻撃力
+	private int defense; // 防御力
 
 	// コンストラクタ
 	Actor() {
 
 	}
 
-	Actor(String name, int hp, int attack) {
+	Actor(String name, int hp, int attack, int defense) {
 		this.name = name;
 		this.hp = hp;
 		this.maxHp = hp;
 		this.attack = attack;
+		this.defense = defense;
 	}
 
 	public String getName() {
@@ -52,6 +54,10 @@ public class Actor {
 
 	public void setAttack(int attack) {
 		this.attack = attack;
+	}
+
+	public int getDefense() {
+		return defense;
 	}
 
 	public String toString() {
@@ -108,11 +114,11 @@ public class Actor {
 		int randomInt = random.nextInt(3);
 
 		if (randomInt == 0) {
-			charactor = new Zombie(10, 5);
+			charactor = new Zombie(10, 5, 0);
 		} else if (randomInt == 1) {
-			charactor = new Zombie(20, 10);
+			charactor = new Zombie(20, 10, 0);
 		} else {
-			charactor = new Ghost(30, 15);
+			charactor = new Ghost(30, 15, 0);
 		}
 
 		return (charactor);

@@ -9,8 +9,10 @@ public class Game {
 		int defeat = 0;
 		System.out.println("★★★ゲーム開始★★★");
 		// 勇者の生成
-		Actor hero = new Hero(50, 10);
+		Hero hero = new Hero(50, 10, 20);
 		hero.status();
+		partition();
+		hero.setWeapon();
 		partition();
 		while ((0 <= defeat) && (defeat < 3)) {
 			// 敵の生成
@@ -26,14 +28,14 @@ public class Game {
 				System.out.println("★★★ゲームオーバー★★★");
 			}
 		}
-		if (defeat > 0) {
+		if (defeat >= 0) {
 			System.out.println("全ての敵を倒した！");
 			partition();
-			Actor dragon = new Dragon(200, 30);
+			Actor dragon = new Dragon(200, 30, 0);
 			System.out.println("ドラゴンが現われた！");
 			defeat = battle(hero, dragon);
 		}
-		if (defeat > 0) {
+		if (defeat >= 0) {
 			System.out.println("★★★ゲーム終了★★★");
 		} else {
 			System.out.println("★★★ゲームオーバー★★★");
@@ -51,7 +53,7 @@ public class Game {
 		System.out.println("---------------------------------------------");
 	}
 
-	static int battle(Actor player, Actor charactor) {
+	static int battle(Hero player, Actor charactor) {
 		Scanner scan = new Scanner(System.in);
 		int select;
 		int defeat = 0;
